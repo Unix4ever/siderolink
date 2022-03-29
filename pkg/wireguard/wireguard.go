@@ -8,6 +8,7 @@ package wireguard
 import (
 	"context"
 	"fmt"
+	"log"
 	"net"
 	"os"
 
@@ -104,6 +105,8 @@ func (dev *Device) Run(ctx context.Context, logger *zap.Logger, peers PeerSource
 	}()
 
 	listenPort := int(dev.listenPort)
+
+	log.Printf(">>>>>>> %#v", client)
 
 	if err = client.ConfigureDevice(interfaceName, wgtypes.Config{
 		PrivateKey: &dev.privateKey,
